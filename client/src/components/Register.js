@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { register } from './UserFunction';
 import userImage from '../userImage.png';
+import '../style/register.css'
 
 
 class Register extends Component {
@@ -57,64 +58,58 @@ class Register extends Component {
     render() {
         return (
             <div className="loginpage">
-                <div className="container1">
-                <img src={userImage} alt="user_image" className="avatar" />
+                <div className="container2">
+                    <img src={userImage} alt="user_image" className="avatar" />
                     <h2>Contact form</h2>
 
-                    <div className="row">
-                        <div className="col-md-6 mt-5 mx-auto">
-                            <form onSubmit={this.onSubmit}  >
+                    <form onSubmit={this.onSubmit}  >
 
-                                <div className="form-group">
-                                    <label htmlFor="first_name">First Name</label>
-                                    <input type="text"
-                                        className="form-control"
-                                        name="first_name"
-                                        placeholder="Enter First Name"
-                                        value={this.state.first_name}
-                                        onChange={this.onChange} />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="last_name">Last Name</label>
-                                    <input type="text"
-                                        className="form-control"
-                                        name="first_name"
-                                        placeholder="Enter Lirst Name"
-                                        value={this.state.last_name}
-                                        ref="searchStringInput"
-                                        onChange={this.onChange1}
-
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="email">Email address</label>
-                                    <input type="email"
-                                        className="form-control"
-                                        name="email"
-                                        placeholder="Enter Email"
-                                        value={this.state.email}
-                                        ref="searchStringInput"
-                                        onChange={this.onChange2} />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="password">Password</label>
-                                    <input type="password"
-                                        className="form-control"
-                                        placeholder="Enter Password"
-                                        value={this.state.password}
-                                        ref="searchStringInput"
-                                        onChange={this.onChange3} />
-                                </div>
-
-                                <button type="submit" className="btn btn-lg btn-success btn-block">
-                                    register!!!
-                             </button>
-                            </form>
+                        <div className="form-group">
+                            <p>First Name</p>
+                            <input type="text"
+                                className="form-control"
+                                name="first_name"
+                                value={this.state.first_name}
+                                onChange={this.onChange} />
                         </div>
-                    </div>
+
+                        <div className="form-group">
+                            <p>Last Name</p>
+
+                            <input type="text"
+                                className="form-control"
+                                name="first_name"
+                                value={this.state.last_name}
+                                ref="searchStringInput"
+                                onChange={this.onChange1}
+
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <p>Email address</p>
+                            <input type="email"
+                                className="form-control"
+                                name="email"
+                                value={this.state.email}
+                                ref="searchStringInput"
+                                onChange={this.onChange2} />
+                        </div>
+
+                        <div className="form-group">
+                            <p>Password</p>
+
+                            <input type="password"
+                                className="form-control"
+                                value={this.state.password}
+                                ref="searchStringInput"
+                                onChange={this.onChange3} />
+                        </div>
+
+                        <button type="submit" className="btn btn-lg btn-success btn-block">
+                            register!!!
+                             </button>
+                    </form>
                 </div>
             </div>
         )

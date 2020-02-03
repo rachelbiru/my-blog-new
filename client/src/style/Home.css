@@ -1,0 +1,81 @@
+h1{
+    font-family: "Brush Script MT"
+}
+
+.homePage{
+    position: absolute;
+    left: 10px;
+}
+
+.homePage .blog_img {
+    max-width: 70%;
+    height: 300px
+}
+
+.homePage .row{
+    width: 80%;
+    /* background-color: blueviolet; */
+    margin: auto;
+}
+
+/* .homePage table{
+    border-collapse: collapse;
+    border: 1px solid black;
+
+} */
+
+/* .homePage table tr td {
+    width: 30px;
+    background-color: aqua;
+} */
+
+table td{
+    /* background-color: aqua; */
+    /* width: 20% !important; */
+    padding: 0x;
+    margin: 0;
+    width: 10%;
+    border-collapse: collapse;
+
+}
+
+table th { 
+ margin: 20px;
+    }
+
+.homePage span{
+    margin: 0;
+    padding-top: 20%;
+    padding-bottom: 18px;
+    /* padding-left: 40px; */
+    padding-right: 0;
+    font-weight: bold;
+    /* color: #fff; */
+    /* font-family: "Brush Script MT"; */
+    position: relative;
+    right: 26%;
+    }
+
+    hr{
+     width: 88%;
+    position: absolute;
+    top: 44%;
+    right: 3%;
+    color: black;
+
+    
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+

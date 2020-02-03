@@ -1,0 +1,44 @@
+.addblog{
+    position: absolute;
+    top: 55%;
+    left: 30%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%); 
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 50%;
+    height: 550px;
+    padding: 80px 40px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 30px;
+}
+
+
+.addblog h1{
+    color: #fff;
+}
+
+.addblog p{
+    margin: 0;
+    padding: 10px;
+    font-weight: bold;
+    color: #fff;
+    font-family: "Brush Script MT"
+}
+
+.addblog .btn {
+    height: 30px;
+    color: #fff;
+    font-size: 15px;
+    background:  #28a745;
+    cursor: pointer;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    margin-right: 10%;
+    width: 100%;
+    font-family: "Brush Script MT"
+}
+
+

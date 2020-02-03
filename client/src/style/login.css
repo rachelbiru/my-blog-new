@@ -1,0 +1,105 @@
+
+.loginpage{
+    margin: 0;
+    padding: 0;
+}
+
+.loginpage:before{
+    content: '';
+    position: fixed;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: absolute;
+    left: 10px;
+
+}
+
+.container1{
+    position: absolute;
+    top: 55%;
+    left: 20%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%); 
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 400px;
+    height: 500px;
+    padding: 80px 40px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 30px;
+
+}
+
+.avatar{
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius:50%;
+    overflow: hidden;
+    top: calc(-80px/2);
+    left: calc(50% -40px)
+}
+
+.container1 h2{
+    margin: 0;
+    padding: 0 0 20px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase; 
+    font-family: "Brush Script MT"
+
+}
+
+.container1 p{
+    margin: 0;
+    padding: 10px;
+    font-weight: bold;
+    color: #fff;
+    font-family: "Brush Script MT"
+}
+
+.container1 input{
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+    
+}
+
+.container1 .form-control {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 5px;
+    color: #fff;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.container1 .btn {
+    height: 30px;
+    color: #fff;
+    font-size: 15px;
+    background:  #28a745;
+    cursor: pointer;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    margin-right: 10%;
+    width: 100%;
+    font-family: "Brush Script MT"
+}
+
+
+
+
+
+

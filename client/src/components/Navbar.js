@@ -4,7 +4,9 @@ import { Link, withRouter } from 'react-router-dom';
 class Navbar extends Component {
         logOut(e) {
             e.preventDefault()
-            localStorage.removeItem('usertoken')
+            localStorage.removeItem('usertoken');
+            localStorage.removeItem('email');
+
             this.props.history.push('/')
         }
     
@@ -42,9 +44,16 @@ class Navbar extends Component {
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item active">
                             <Link to="/profile" className="nav-link" >
-                                user
+                                User
                             </Link>
                         </li>
+
+                        <li className="nav-item active">
+                            <Link to="/userblogs" className="nav-link" >
+                                My-Blogs
+                            </Link>
+                        </li>
+
                         <li className="nav-item">
                             <a harf="" onClick={this.logOut.bind(this)} className="nav-link">
                                 Logout

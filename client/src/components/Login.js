@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { login } from './UserFunction';
-import '../login.css';
+// import '../login.css';
+import '../style/login.css';
+
 import userImage from '../userImage.png';
 
 class Login extends Component {
@@ -51,7 +53,6 @@ class Login extends Component {
                             <input type="email"
                                 className="form-control"
                                 id="exampleInputEmail1"
-                                // placeholder="Enter Email"
                                 value={this.state.email}
                                 onChange={this.onChange} />
                         </div>
@@ -61,12 +62,11 @@ class Login extends Component {
                             <input type="password"
                                 className="form-control"
                                 id="exampleInputPassword1"
-                                // placeholder="Enter Password"
                                 value={this.state.password}
                                 onChange={this.onChange2} />
                         </div>
 
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-primary ">
                             Sign in
                     </button>
                     </form>

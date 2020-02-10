@@ -6,7 +6,6 @@ class Navbar extends Component {
             e.preventDefault()
             localStorage.removeItem('usertoken');
             localStorage.removeItem('email');
-
             this.props.history.push('/')
         }
     
@@ -34,6 +33,7 @@ class Navbar extends Component {
                 </div>
             </nav>
         )
+
 
         const userLink = (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -73,7 +73,6 @@ class Navbar extends Component {
         )
 
         return (
-
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -83,6 +82,12 @@ class Navbar extends Component {
                         <li className="nav-item active">
                             <Link to="/" className="nav-link" >
                                 Home
+                            </Link>
+                        </li>
+
+                        <li className="nav-item active">
+                            <Link to="/about" className="nav-link" >
+                                About
                             </Link>
                         </li>
                     </ul>

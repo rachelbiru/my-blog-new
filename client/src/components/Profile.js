@@ -6,46 +6,32 @@ import axios from 'axios';
 
 
 class Profile extends Component {
-    blogs = { file: '', categories: '', image: '', is_local: '', description: '' };
-    state = { redirect: false }
 
-    
+    blogs = { file: '', categories: '', description: '' };
+    comments = { name: '', text: '' }
+
+    state = { filename: '', redirect: false }
+
+
     loadToServerFile = () => {
-    let formData = new FormData();
-    formData.append('someFile' , this.blogs.file )
-    formData.append('someText' , this.blogs.figcaption);
+        let formData = new FormData();
+        formData.append('someFile', this.state.filename)
+        formData.append('categories', this.blogs.categories);
+        formData.append('description', this.blogs.description);
+        formData.append('email', localStorage.email);
+        formData.append('comments', JSON.stringify(this.comments));
 
-    const config = {headers : {'content-type' : 'multipart/from-data'}}
+        // const config = {headers : {'content-type' : 'multipart/from-data'}}
 
+        
         axios
-        .post('/api' ,formData,config)
-        .then(res => {
-            if(res.status === 201){
-                console.log('success');
-                console.log(res.data.file);   
-                this.blogs.file = res.data.file.filename;      
-            }else{
-                console.log(`error status code ${res.status}`);
-            }
-         })
-         .catch(err => {console.log(err);
-          })
-    }
-
-
-    loadToServer = () => {
-        axios
-            .post('/blogs', {
-                categories: this.blogs.categories,
-                image: this.blogs.image,
-                is_local: this.blogs.is_local,
-                description: this.blogs.description,
-                email: localStorage.email
-
-            })
+            .post('/api', formData)
             .then(res => {
                 if (res.status === 201) {
-                    console.log('succes');
+                    console.log('success');
+                    console.log(res.data.filename);
+                    this.blogs.file = res.data.filename.filename;
+                    console.log(res.data.filename);
 
                 } else {
                     console.log(`error status code ${res.status}`);
@@ -58,6 +44,8 @@ class Profile extends Component {
 
 
     render() {
+        console.log(this.blogs.image);
+
         if (this.state.redirect) {
             return <Redirect to='/' />
         }
@@ -84,36 +72,41 @@ class Profile extends Component {
                         </div>
 
                         <div className="row">
-                            <div className="col">
-                                <p>Add Image/File :</p>
-                                <input disabled={this.blogs.file} onChange={(event) => {
-                                    this.blogs.image = event.target.value;
-                                }} type="text" name="" id="" className="form-control" />
-                            </div>
 
                             <div className="col">
                                 <label htmlFor="exampleFormControlTextarea1">Some File</label>
-                                <input disabled={this.blogs.image} type="file" className="form-control" onChange={(e) => {
-                                    this.blogs.file = e.target.files[0];
+                                <input type="file" className="form-control" onChange={(e) => {
+                                    this.setState({ filename: e.target.files[0] })
                                 }} />
                             </div>
                         </div>
+
 
                         <div className="form-group">
                             <p> description : </p>
                             <textarea onChange={(event) => {
                                 this.blogs.description = event.target.value;
-                            }} type="text" name="text" id="" className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            }} type="text" name="text" id="" className="form-control" rows="3"></textarea>
                         </div>
 
                         <div className="form-group">
                             <button type="submit" className="btn btn-success form-control" onClick={() => {
                                 this.setState({ redirect: true });
-                                this.loadToServer();
                                 this.loadToServerFile();
+                                window.location.reload(false);
                             }}>Add Blog to Home Page</button>
                         </div>
                     </form>
+
+                    <input type="text" onChange={(e) => {
+                        this.comments.name = e.target.value
+                    }}></input>
+
+                    <input type="text" onChange={(e) => {
+                        this.comments.text = e.target.value
+                    }}></input>
+
+
                 </div >
             </div>
         )

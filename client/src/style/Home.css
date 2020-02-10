@@ -1,3 +1,219 @@
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    /* background: #292929; */
+}
+
+.theme_img{
+    width: 100%;
+}
+
+.wrapper {
+    font-family: sans-serif;
+    /* background-color: blue;   */
+    width: 100%;
+    margin: auto;
+    margin-top: 3%;
+        /* left: 55%;
+        top:50%;
+        transform: translate(-50%, -50%);
+        position: absolute; */
+}
+
+#blogImg{
+    /* display: inline; */
+    width: 500px;
+    height: 400px;
+}
+
+.Blog{
+    display: inline;
+}
+
+
+
+.content{
+    position: absolute;
+    top: 45%;
+    left:50% ;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 28px;
+    background-color: cadetblue;
+}
+
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 15px;
+    bottom: 0;
+    right: 0;
+    height: 91%;
+    width: 95%;
+    opacity: 0;
+    transition: .4s ease;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.wrapper :hover .overlay {
+ opacity: 1;
+}
+
+.header{
+    width: 40%;
+    margin-top: 10%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    font-family: "Brush Script MT";
+    left: 24%;
+    position: relative;
+
+}
+a{
+    text-decoration: none;
+    outline: none;
+}
+
+.footer-main-div{
+    width: 100%;
+    height: auto;
+    margin:auto;
+    background: #272727;
+padding: 30px 0px;
+}
+.footer-social-icons{
+    width: 100%;
+    height: auto;
+    margin: auto;  
+}
+.footer-social-icons ul li:hover{
+    background: white;
+}
+.footer-social-icons ul li:hover a{
+    color: #fff;
+}
+
+
+.footer-social-icons ul{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+.footer-social-icons ul li {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin:0px 10px;
+    border-radius: 100%;
+    background: cadetblue;
+
+}
+
+.footer-social-icons ul li a{
+    color: #272727;
+    font-size: 25px;
+    display: block;
+}
+
+.footer-social-icons ul li a i{
+    line-height: 50px;
+}
+
+.footer-menu-one{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    margin-top: 30px;
+}
+.footer-menu-one ul{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+.footer-menu-one ul li{
+display: inline-block;
+margin: 0px 20px;
+
+}
+.footer-menu-one ul li a{
+   font-family: arial;
+   font-size: 16px;
+   font-weight: 600;
+   color: #fff;
+   letter-spacing: 1px;
+   text-transform:uppercase;
+}
+.footer-menu-one ul li a:hover{
+    color:cadetblue;
+}
+
+    .footer-menu-two{
+        width: 100%;
+        height: auto;
+        margin: auto;
+        margin-top: 10px;
+    }
+    .footer-menu-two ul{
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+    }
+    .footer-menu-two ul li{
+    display: inline-block;
+    margin: 0px 20px;
+    
+    }
+    .footer-menu-two ul li a{
+       font-family: arial;
+       font-size: 16px;
+       font-weight: 600;
+       color: #fff;
+       text-transform:uppercase;
+    }
+
+    .footer-menu-two ul li a:hover{
+        color:cadetblue;
+    }
+
+
+.footer-bottom{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    background-color: cadetblue;
+    padding: 10px;
+
+}
+
+.footer-bottom p{
+    font-family: arial;
+    font-synthesis: 14px;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.footer-bottom p a{
+    color: #fff;
+}
+.footer-bottom p a:hover{
+    color: #272727;
+
+}
+
+
+
+/* 
 h1{
     font-family: "Brush Script MT"
 }
@@ -14,58 +230,25 @@ h1{
 
 .homePage .row{
     width: 80%;
-    /* background-color: blueviolet; */
+    background-color: blueviolet;
     margin: auto;
 }
 
-/* .homePage table{
-    border-collapse: collapse;
-    border: 1px solid black;
 
-} */
-
-/* .homePage table tr td {
-    width: 30px;
-    background-color: aqua;
-} */
-
-table td{
-    /* background-color: aqua; */
-    /* width: 20% !important; */
-    padding: 0x;
-    margin: 0;
-    width: 10%;
-    border-collapse: collapse;
-
-}
-
-table th { 
- margin: 20px;
-    }
 
 .homePage span{
     margin: 0;
     padding-top: 20%;
     padding-bottom: 18px;
-    /* padding-left: 40px; */
+    padding-left: 40px;
     padding-right: 0;
     font-weight: bold;
-    /* color: #fff; */
-    /* font-family: "Brush Script MT"; */
+    color: #fff;
+    font-family: "Brush Script MT";
     position: relative;
     right: 26%;
-    }
+    } */
 
-    hr{
-     width: 88%;
-    position: absolute;
-    top: 44%;
-    right: 3%;
-    color: black;
-
-    
-
-    }
 
 
 

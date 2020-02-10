@@ -4,30 +4,34 @@ import { Redirect } from 'react-router-dom';
 
 
 class UserBlogs extends Component {
-    state = { blogs: [] , redirect : false , blog : {} }
+    state = { blogs: [{}] , redirect : false , blog : {} }
 
     componentDidMount() {
-        axios.get(`/blogs/${localStorage.email}`)
+        axios.get(`/api/${localStorage.email}`)
           
             .then(res => {
-                //  console.log(`/blogs/${localStorage.email}`);
+                  console.log(res.data);
                 const blogs = res.data;
                 this.setState({ blogs });
             })
     }
 
+
+    
     deleteBlog = (id,i)=>{
-        axios.delete(`/blogs/${id}`)
+        axios.delete(`/api/${id}`)
         .then(res =>{
             console.log(res.data);
-        }) 
 
-        let tmp = [this.state.blogs]
-        tmp.splice(i,1)
-        this.setState({blogs : tmp})
+            let tmp = [...this.state.blogs]
+            tmp.splice(i,1)
+            this.setState({blogs : tmp})
+        }) 
+        .catch({
+            
+        })
     }
     
-
 
     render() {
          console.log(this.state.blogs)
@@ -40,7 +44,7 @@ class UserBlogs extends Component {
 
         const elements = this.state.blogs.map((item, i) => (
             <div key={i}>
-                <img src={item.image} />
+                <img src={item.filename} alt="" />
                 <h1>{item.categories}</h1>
                 <p>{item.description}</p>
 
@@ -51,7 +55,7 @@ class UserBlogs extends Component {
 
 
                 <button onClick={()=>{
-                       const id = item._id
+                    //    const id = item._id
                     //   this.updateBlog(id);
                      this.props.searchBlog(item._id);
                       this.setState({redirect:true})

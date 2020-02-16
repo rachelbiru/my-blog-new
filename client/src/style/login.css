@@ -98,6 +98,16 @@
     font-family: "Brush Script MT"
 }
 
+@media screen and (max-width: 1021px) {
+    .container1{
+
+      left: 50%;
+      top:70%
+     
+    }
+  }
+
+
 
 
 

@@ -45,7 +45,7 @@ class Login extends Component {
             <div className="loginpage">
                 <div className="container1">
                     <img src={userImage} alt="user_image" className="avatar" />
-                    <h2>Contact form</h2>
+                    <h2>Login</h2>
 
                     <form noValidate onSubmit={this.onSubmit}>
                         <div className="form-group">

@@ -7,11 +7,6 @@ const Blog = require("../models/Blog")
 
 comments.post('/:id', (req, res) => {
       console.log(req.params.id)
-    // let retailerID = `${retailer._id}`
-    // let name = req.body.name
-    // let email =  req.body.email
-    // let text =  req.body.text
-    // const comments1 = {name: name, email: email, text: text }
 
      const newComment = new Comment({
         name : req.body.name,
@@ -19,32 +14,20 @@ comments.post('/:id', (req, res) => {
         text: req.body.text
      })
 
-     newComment.save();
+    newComment.save();
 
     Blog.findById(req.params.id, function(err, foundBlog){
-       console.log(foundBlog)
+    
        foundBlog.comments.push(newComment);
         foundBlog.save();
+        res.status(201).send(newComment);
 
+        if(err){
+            console.log(err)
+        }
     })
 
-    // var CommentUser = new Comment({
-    //     name: req.body.name,
-    //     email: req.body.email,
-    //     text: req.body.text,
-    // }) 
-
-    // CommentUser
-    // .save()
-    // .then(result =>{
-    //     console.log(result);   
-    // })
-    // .catch(err => console.log(err) )
-    //  res.status(201).json({
-    //      message: 'create!!!!!!!!!!!!!!!!!!'
-    //  })
 })
-
 
 
 comments.get("/:id" , (req,res,next) =>{
@@ -64,5 +47,44 @@ comments.get("/:id" , (req,res,next) =>{
 
 
 
+comments.delete("/:id" , (req,res,next) =>{
+    const id = req.params.id
+    Comment.remove({ _id: id })
+        .exec()
+        .then(result => {
+            res.status(200).json(result)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+
+        })   
+})
+
+
+comments.patch("/:id", (req,res)=>{
+    const id = req.params.id;
+
+    Comment.updateOne(
+        {_id:id} ,
+        {$set:{
+        name: req.body.name,
+        text: req.body.text,
+ 
+    }})
+    .exec()
+    .then(result =>{
+        console.log(req.body)
+        console.log(result,"updata succes");
+        res.status(200).json(result)
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({error:err})
+    })
+
+})
 
 module.exports = comments;

@@ -50,11 +50,10 @@ class Register extends Component {
 
         register(user).then(res => {
             this.props.history.push('/login');
-            console.log("rachellllllllll" + res)
+            console.log("register" + res)
         })
-
     }
-
+    
     render() {
         return (
             <div className="loginpage">

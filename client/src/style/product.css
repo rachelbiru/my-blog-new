@@ -1,0 +1,282 @@
+.blogCol{
+    width: 100%;
+    height: 1000px;
+
+}
+
+
+.product .head{
+    float: right;
+    margin-top: 5%;
+    margin-bottom: 3%
+}
+
+.product .head h1{
+    font-size: 60px;
+}
+
+.product .description{
+    font-size: 17px;
+    min-height: 20px;
+    font-family: "Segoe Print";
+    margin-top: 3%;
+}
+
+.comments{
+    margin-top: 8%;
+}
+
+/* .comments h1{
+font-family: "Segoe Print";
+} */
+
+
+
+
+.commentsShow{
+     width: 100%; 
+     height: 1000px;
+}
+
+.commentsShow h1{
+float: right;
+font-family: "Segoe Print";
+}
+
+h1{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;  
+  margin-bottom: 2%;
+
+}
+.com{
+  border-top: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width:100%;
+  min-height: 10px;
+  /* margin-top: 5px; */
+
+}
+
+.com p {
+    margin: 0;
+}
+
+.com h5{
+    margin-top: 2%;
+}
+
+.iconComments{
+    align-self: flex-start;
+}
+
+.post{
+     width: 100%; 
+     height: 500px;
+     position: relative;
+     cursor: pointer;
+     margin: auto;
+}
+
+
+.post:hover .post-s{
+    width:60% ;
+    margin: auto;
+    position: absolute;
+    left:40%;
+    float: right;
+}
+
+.post .imgProduct {
+    width: 60%;
+    height: 600px;
+    display: block;
+    float: right;
+}
+
+.post-s{
+    width: 0;
+    height: 600px;
+    background: rgb(40, 167, 69,0.5);
+    position: absolute;
+    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.7s ease;
+    margin: auto;
+    left: 40%;
+
+}
+
+.post-s h2{
+    color: black;
+    font-size: 20px;
+    border: 2px solid black;
+    padding: 5px 30px;
+}
+
+
+.Morepost{
+    width: 100%; 
+    height: 169px;
+    position: relative;
+    cursor: pointer;
+    margin: auto;
+}
+
+.Morepost:hover .Morepost-s{
+    width:60% ;
+    margin: auto;
+    position: absolute;
+    /* left:40%; */
+    float: right;
+}
+
+.Morepost-s{
+    width: 0;
+    height: 200px;
+    background: rgb(0, 0, 0,0.8);
+    position: absolute;
+    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.7s ease;
+    margin: auto;
+    left: 31%;
+}
+
+
+
+
+
+.Share{
+    margin-top: 4%;
+    background: #28a745;
+    border-radius: 10px;
+    min-height: 50px;
+    margin-bottom: 10%;
+}
+
+
+.Share span h2{
+    display: inline-block;
+}
+
+
+
+.Share span img{
+    width: 7%;
+    min-height: 50px;
+    float: right;
+    padding: 4px;
+}
+
+.iconComments span{
+    padding-left: 50px;
+}
+
+ion-icon{
+    font-size: 30px;
+    color:black;
+    padding-left: 5px;
+}
+
+.editCom{
+    width: 100%;
+    height: 430px;
+    background:rgb(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 143px;
+    left: 47%;
+}
+
+.editCom textarea{
+    margin-top: 10%;
+}
+
+.editCom input{
+    position: absolute;
+    right: 50%;
+}
+
+.editCom .input-group-prepend{
+    
+padding: 10px;
+}
+
+
+
+.input-group {
+    position: relative;
+    display: inline-block;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 18%;
+    left: 32%;
+}
+
+
+.input-group-append .btn, .input-group-prepend .btn {
+    position: relative;
+    z-index: 2;
+    right: 353%;
+    background-color: #28a745;
+}
+
+.MoreBlog{
+    margin-top:14%;
+
+}
+
+.MoreBlog h2{
+    position: relative;
+    left: 33%;
+    top: 70px;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.moreUserBlogs{
+    margin-top: 12%
+}
+
+.moreUserBlogs img{
+    width: 60%;
+    height: 200px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    left: 31%;
+    position: relative;
+}
+
+
+/* @media screen and (max-width: 483px) {
+    .MoreBlog  {
+        position: relative;
+        top: 1322px;
+     
+    }
+  } */
+
+
+
+  @media screen and (max-width: 554px) {
+    .MoreBlog {
+        margin-top:335% !important;
+    }
+  }
+
+
+
+
+
+

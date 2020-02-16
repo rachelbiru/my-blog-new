@@ -1,45 +1,18 @@
 import React, { Component } from 'react';
 import '../style/Home.css';
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import team_pic from './theme_picture.png'; 
 import { Row, Col, Container } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 
 
 class Landing extends Component {
-    state = { blogs: [{}], navigateToProduct: false, img: '', comments: [] }
+    state = {navigateToProduct: false}
 
-
-    componentDidMount() {
-        axios.get(`/api`)
-            .then(res => {
-                // const blogs = res.data;
-                console.log(res.data)
-
-                this.setState({ blogs: res.data });
-                // this.setState({comments : res.data.comments })
-
-                this.props.blogsArray(res.data);
-
-            })
-            .catch(err => {
-                console.log(err);
-            })
-
-
-
-
-    }
-
-
+  
     render() {
-        console.log(this.state.blogs)
-        console.log(this.state.comments)
-
-
-
+        
         if (this.state.navigateToProduct) {
             return <Redirect to="product" />
         }
@@ -53,46 +26,21 @@ class Landing extends Component {
 
                 <div className="wrapper">
                     <Container>
-                        <Row >
-                            {this.state.blogs.map((blog, i) => (
-                                <Col key={i} md={6} md="auto" >
+                        <Row>
+                            {this.props.blogs.map((blog, i) => (
+                                <Col key={i} md={6} >
                                     <div className="Blog" key={i} >
                                         <img id="blogImg" src={blog.filename} alt="" />
                                         <h3>{blog.categories}</h3>
 
-
-
-
-
-                                        <span>  </span>
                                         <div className="overlay">
                                             <div className="content" onClick={() => {
-                                                this.props.setProduct(this.state.blogs[i]);
+                                                this.props.setProduct(this.props.blogs[i]);
                                                 this.setState({ navigateToProduct: true })
                                             }}>  Read More... </div>
                                         </div>
                                     </div>
-
-                                    {/* {this.state.comments.map(com => (
-                                        <p>{com.text}</p>
-                                    ))} */}
-
-
                                 </Col>
-
-                                // <div className="" key={i} onClick={() => {
-                                //     this.props.setProduct(this.state.blogs[i]);
-                                //     this.setState({ navigateToProduct: true })
-                                //     // window.location.href = `/product/${this.state.blogs[i]._id}`
-                                // }}>
-
-
-                                //     <img src={blog.filename} alt="" />
-                                //     <h1>{blog.categories}</h1>
-                                //     <div className="overlay">
-                                //         <div className="content"> Image Hover Effect </div>
-                                //     </div>
-                                // </div>
                             ))}
 
                         </Row>
@@ -101,35 +49,31 @@ class Landing extends Component {
 
 
 
-
-
                 <div className="footer-main-div">
                     <div className="footer-social-icons">
                         <ul>
-                            <li><a href="#" target="blank" className="fa fa-facebook" /></li>
-                            <li><a href="#" target="blank" className="fa fa-twitter" /></li>
-                            <li><a href="#" target="blank" className="fa fa-google-plus" /></li>
-                            <li><a href="#" target="blank" className="fa fa-youtube" /></li>
+                            <li><Link to="https://www.facebook.com/" target="blank" className="fa fa-facebook"><img src="facebook-logo.png" alt="facebook" /> </Link> </li>
+                            <li><Link to="https://www.instagram.com/" target="blank" className="fa fa-twitter" > <img src="220px-Instagram_logo_2016.svg.png" alt="instegram" /></Link></li>
+                            <li><Link to="https://mail.google.com/mail/u/0/?ogbl#inbox" target="blank" className="fa fa-google-plus" ><img src="gmail.jpg" alt="gmail" /></Link></li>
+                            <li><Link to="https://www.youtube.com/results?search_query=ckud+tupbv" target="blank" className="fa fa-youtube" ><img src="yt_1200-vflhSIVnY.png" alt="youtube" /></Link></li>
 
                         </ul>
                     </div>
 
                     <div className="footer-menu-one">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Service</a></li>
-                            <li><a href="#">Conect us</a></li>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="#">Conect us</Link></li>
 
                         </ul>
                     </div>
 
                     <div className="footer-menu-two">
                         <ul>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Gallery</a></li>
-                            <li><a href="#">Media</a></li>
+                            <li><Link to="/">Blog</Link></li>
+                            <li><Link to="#">News</Link></li>
+                            <li><Link to="#">Media</Link></li>
 
                         </ul>
                     </div>
@@ -137,7 +81,7 @@ class Landing extends Component {
 
                 </div>
                 <div className="footer-bottom">
-                    <p> Design by: <a href="#"> Learning Tutorial Point</a></p>
+                    <p> Design by: <Link to="#"> Learning Tutorial Point</Link></p>
                 </div>
             </div>
         )

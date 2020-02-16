@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import axios from 'axios';
+import moment from 'moment';
 
 import { BrowserRouter, Route } from 'react-router-dom';
-
 import Navbar from './components/Navbar';
 import Landing from './components/landing';
 import Login from './components/Login';
@@ -13,13 +13,63 @@ import Product from './components/product';
 import UserBlogs from './components/userBlogs';
 import Editblog from './components/editBlog';
 import About from './components/About';
+import ShowHistory from './components/History';
 
 
 
 
 
 class App extends Component {
-  state = { blogs: [] , product: [] , blog:{} , id:''}
+  state = { blogs: [], history: [], product: [], blog: {}, id: '' }
+
+
+  componentDidMount() {
+    axios.get(`/blogs`)
+      .then(res => {
+        this.setState({ blogs: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
+
+
+
+
+    axios.get(`/history/${localStorage.email}`)
+      .then(res => {
+        this.setState({ history: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+
+
+  createArrayhistory = (titleBlog, type) => {
+    let date = moment(new Date()).format('llll');
+
+
+    axios
+      .post(`/history`, {
+        titleBlog: titleBlog,
+        type: type,
+        date: date,
+        email: localStorage.email
+      })
+      .then(res => {
+        if (res.status === 201) {
+          console.log(res.data, "res dataaaaaaaa");
+
+        } else {
+          console.log(`error status code ${res.status}`);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 
 
   setProduct = product1 => {
@@ -27,23 +77,11 @@ class App extends Component {
   }
 
 
-
-  putToArray = (arrayBlog) =>{
-    // console.log(arrayBlog);
-    let tmpBlogs = [...arrayBlog]
-    // console.log(tmpBlogs)
-    this.setState({blogs: tmpBlogs})
-  }
-  
   searchBlog = (id) => {
-    this.setState({id:id})
+    this.setState({ id: id })
 
-    console.log(this.state.blogs)
-    
     let tmp = [...this.state.blogs];
-
     const BlogIndex = tmp.findIndex(blog => { return blog._id === id })
-    console.log(BlogIndex)
     if (BlogIndex !== -1) {
       this.setState({ blog: tmp[BlogIndex] })
     }
@@ -51,28 +89,21 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.blogs)
-    console.log(this.state.blog)
-
-    
     return (
       <BrowserRouter>
         <div className="App">
           <Navbar />
           <div >
-            <Route exact path='/' render={() => <Landing  setProduct={this.setProduct} blogsArray = {this.putToArray} shereblogs={this.shareBlog} />} />
+            <Route exact path='/' render={() => <Landing blogs={this.state.blogs} setProduct={this.setProduct} shereblogs={this.shareBlog} />} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
-            {/* <Route exact path='/Profile' component={Profile} /> */}
+            <Route exact path='/history' render={() => <ShowHistory historyArray={this.state.history} />} />
 
-            {/* <Route exact path='/profile' render={() => <Profile />} /> */}
-            <Route exact path='/profile' render={() => <Profile  />} />
+            <Route exact path='/profile' render={() => <Profile history={this.createArrayhistory} />} />
 
-            <Route exact path='/product' render={() => <Product product ={this.state.product} />} />
-            {/* <Route exact path='/userblogs' component={UserBlogs} /> */}
-
-            <Route exact path='/userblogs' render={() => <UserBlogs searchBlog={this.searchBlog} />} />
-            <Route exact path='/editblog' render={() => <Editblog blog ={this.state.blog} id={this.state.id} />} />
+            <Route exact path='/product' render={() => <Product Blogs={this.state.blogs} setProdact={this.setProduct} product={this.state.product} />} />
+            <Route exact path='/userblogs' render={() => <UserBlogs  searchBlog={this.searchBlog} history={this.createArrayhistory} />} />
+            <Route exact path='/editblog' render={() => <Editblog blog={this.state.blog} id={this.state.id} history={this.createArrayhistory} />} />
             <Route exact path='/about' component={About} />
 
 

@@ -9,13 +9,13 @@ const BlogSchema = new Schema({
     },
     categories: {
         type: String,
-        // required: true
+         required: true
 
     },
 
     description: {
         type: String,
-        // required: true
+         required: true
 
     },
     email: {

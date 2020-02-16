@@ -21,18 +21,19 @@ class Profile extends Component {
         formData.append('email', localStorage.email);
         formData.append('comments', JSON.stringify(this.comments));
 
-        // const config = {headers : {'content-type' : 'multipart/from-data'}}
-
-        
         axios
-            .post('/api', formData)
+            .post('/blogs', formData)
             .then(res => {
+                
                 if (res.status === 201) {
-                    console.log('success');
-                    console.log(res.data.filename);
                     this.blogs.file = res.data.filename.filename;
-                    console.log(res.data.filename);
+                    console.log(res.data)
+                    console.log(this.state.redirect)
+               
+                  window.location.reload(true);
 
+
+                   
                 } else {
                     console.log(`error status code ${res.status}`);
                 }
@@ -44,37 +45,30 @@ class Profile extends Component {
 
 
     render() {
-        console.log(this.blogs.image);
-
+        
         if (this.state.redirect) {
-            return <Redirect to='/' />
+            return <Redirect to='/' /> 
         }
-        return (
 
+        return (
             <div className="loginpage">
                 <div className="addblog">
                     <h1>Add blog</h1>
                     <form >
                         <div className="form-group">
                             <p>Categories :</p>
-                            <select onChange={(e) => {
+
+                            <input className="form-control" id="exampleFormControlSelect1" type="text" onChange={(e) => {
                                 this.blogs.categories = e.target.value
                                 console.log(e.target)
 
-                            }} className="form-control" id="exampleFormControlSelect1">
-                                <option ></option>
-                                <option>Sportswear</option>
-                                <option>Evening clothes</option>
-                                <option>Days clothes</option>
-                                <option>Summer clothes</option>
-                                <option>winter clothes</option>
-                            </select>
+                            }}/>
                         </div>
 
                         <div className="row">
 
                             <div className="col">
-                                <label htmlFor="exampleFormControlTextarea1">Some File</label>
+                                <p>Some File :</p>
                                 <input type="file" className="form-control" onChange={(e) => {
                                     this.setState({ filename: e.target.files[0] })
                                 }} />
@@ -89,23 +83,17 @@ class Profile extends Component {
                             }} type="text" name="text" id="" className="form-control" rows="3"></textarea>
                         </div>
 
+
                         <div className="form-group">
                             <button type="submit" className="btn btn-success form-control" onClick={() => {
-                                this.setState({ redirect: true });
                                 this.loadToServerFile();
-                                window.location.reload(false);
-                            }}>Add Blog to Home Page</button>
+                                this.props.history(this.blogs.categories, "add")
+                                this.setState({ redirect: true });
+                                
+                               
+                            }}>    Add Blog to Home Page </button>
                         </div>
                     </form>
-
-                    <input type="text" onChange={(e) => {
-                        this.comments.name = e.target.value
-                    }}></input>
-
-                    <input type="text" onChange={(e) => {
-                        this.comments.text = e.target.value
-                    }}></input>
-
 
                 </div >
             </div>

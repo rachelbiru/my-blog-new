@@ -10,20 +10,10 @@ users.use(cors())
 
 process.env.SECRET_KEY = 'secret'
 
-//VALIDATION
-// const Joi = require('@hapi/joi');
-
-// const schema = Joi.object().keys ({
-//     firs_name:  Joi.string().min(6).required()
-//     last_name:  Joi.string().min(6).required().label("Your error message in here"),
-//     email: Joi.string().min(6).required().email().label("Your email not valid"),
-//     password:  Joi.string().min(6).required().label("pass min")
-// })
 
 
 users.post('/register', (req, res) => {
 
-    //LETS VALIDATE BEFORE WE A USER
 
     const today = new Date()
     const userData = {

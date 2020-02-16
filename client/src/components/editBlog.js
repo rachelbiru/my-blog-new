@@ -11,22 +11,18 @@ class Editblog extends Component {
 
 
     updateBlog = (id) => {
-        console.log(id)
-
-
         let formData = new FormData();
         formData.append('someFile', this.state.filename)
         formData.append('categories', this.blogs.categories);
         formData.append('description', this.blogs.description);
         formData.append('email', localStorage.email);
 
-        axios.post(`/api/${id}`, formData)
+        axios.post(`/blogs/${id}`, formData)
             .then(res => {
                 if (res.status === 201) {
                     console.log('success update');
-                    console.log(res.data.filename);
                     this.blogs.file = res.data.filename.filename;
-                    console.log(res.data.filename);
+                    window.location.reload(true);
 
                 } else {
                     console.log(`error status code ${res.status}`);
@@ -39,85 +35,42 @@ class Editblog extends Component {
 
 
 
-    inputChangeHandler = (e, value) => {
-        const blog = { ... this.state.blog }
-
-        if (value === "categories") {
-            blog.categories = e.target.value;
-        }
-        else if ("description") {
-            blog.description = e.target.value
-        }
-        this.setState({ blog: blog })
-    }
-
 
     render() {
 
-        console.log(this.props.id);
-        console.log(this.state.blog);
-
         if (this.state.redirect) {
-            return <Redirect to='/' />
+            if (this.blogs.categories === "" || this.blogs.description === "" || this.blogs.filename ==="") {
+                alert("you nead to insert")
+            } else {
+                return <Redirect to='/userblogs' />
+            }
         }
 
+
         return (
-            // <div>
-            //     <h1>Edit blog</h1>
-
-            //     <input type="file" onChange={(e) => {
-            //         this.setState({ filename: e.target.files[0] })
-
-            //     }} />
-
-            //     <input type="text" defaultValue={this.props.blog.categories} onChange={(e) => {
-            //         this.blogs.categories = e.target.value;
-            //         this.inputChangeHandler(e, "categories");
-            //     }} />
-
-            //     <input type="text" defaultValue={this.props.blog.description} onChange={(e) => {
-            //         this.blogs.description = e.target.value;
-            //         this.inputChangeHandler(e, "description")
-
-            //     }} />
-
-            //     <button onClick={() => {
-            //         this.updateBlog(this.props.id);
-            //         this.setState({ redirect: true })
-            //     }} type="submit" className="btn btn-dark">Save</button>
-
-            // </div>
-
-
             <div className="loginpage">
                 <div className="addblog">
                     <h1>Update Blog</h1>
                     <form >
                         <div className="form-group">
                             <p>Categories :</p>
-                            <select defaultValue={this.props.blog.categories} onChange={(e) => {
-                                this.blogs.categories = e.target.value
 
-                            }} className="form-control" id="exampleFormControlSelect1">
-                                <option ></option>
-                                <option>Sportswear</option>
-                                <option>Evening clothes</option>
-                                <option>Days clothes</option>
-                                <option>Summer clothes</option>
-                                <option>winter clothes</option>
-                            </select>
+                            <input defaultValue={this.props.blog.categories} className="form-control" id="exampleFormControlSelect1" type="text" onChange={(e) => {
+                                this.blogs.categories = e.target.value
+                                console.log(e.target)
+
+                            }} />
                         </div>
 
-                        <div className="row">
 
+                        <div className="row">
                             <div className="col">
-                                <label htmlFor="exampleFormControlTextarea1">Some File</label>
+                                <p>Some File :</p>
                                 <input type="file" className="form-control" onChange={(e) => {
                                     this.setState({ filename: e.target.files[0] })
                                 }} />
                             </div>
                         </div>
-
 
                         <div className="form-group">
                             <p> description : </p>
@@ -130,29 +83,15 @@ class Editblog extends Component {
                         <div className="form-group">
                             <button type="submit" className="btn btn-success form-control" onClick={() => {
                                 this.updateBlog(this.props.id);
+                                this.props.history(this.props.blog.categories, "update");
                                 this.setState({ redirect: true })
                             }}>Edit Blog to Home Page</button>
                         </div>
                     </form>
-
-
-                    {/* <input type="text" onChange={(e) => {
-                        this.comments.name = e.target.value
-                    }}></input>
-
-                    <input type="text" onChange={(e) => {
-                        this.comments.text = e.target.value
-                    }}></input> */}
-                    
-
-
                 </div >
             </div >
-
         )
     }
-
 }
-
 
 export default Editblog;

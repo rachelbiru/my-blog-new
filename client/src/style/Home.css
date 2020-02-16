@@ -34,11 +34,10 @@ body{
     height: 400px;
 }
 
+
 .Blog{
     display: inline;
 }
-
-
 
 .content{
     position: absolute;
@@ -48,18 +47,18 @@ body{
     color: #fff;
     text-transform: uppercase;
     font-size: 28px;
-    background-color: cadetblue;
+    background-color: #28a745;
+    cursor: pointer;
 }
 
 
 .overlay{
     position: absolute;
     top: 0;
-    left: 15px;
     bottom: 0;
-    right: 0;
+    right: 34px;
     height: 91%;
-    width: 95%;
+    width: 88%;
     opacity: 0;
     transition: .4s ease;
     background: rgba(0, 0, 0, 0.7);
@@ -109,13 +108,18 @@ padding: 30px 0px;
     padding: 0px;
     text-align: center;
 }
+.footer-social-icons ul img{
+    width: 59%;
+    height: 30px;
+}
+
 .footer-social-icons ul li {
     display: inline-block;
     width: 50px;
     height: 50px;
     margin:0px 10px;
     border-radius: 100%;
-    background: cadetblue;
+    background: #28a745;
 
 }
 
@@ -154,7 +158,7 @@ margin: 0px 20px;
    text-transform:uppercase;
 }
 .footer-menu-one ul li a:hover{
-    color:cadetblue;
+    color:#28a745;
 }
 
     .footer-menu-two{
@@ -182,7 +186,7 @@ margin: 0px 20px;
     }
 
     .footer-menu-two ul li a:hover{
-        color:cadetblue;
+        color:#28a745;
     }
 
 
@@ -190,7 +194,7 @@ margin: 0px 20px;
     width: 100%;
     height: auto;
     margin: auto;
-    background-color: cadetblue;
+    background-color: #28a745;
     padding: 10px;
 
 }
@@ -212,42 +216,35 @@ margin: 0px 20px;
 }
 
 
+@media screen and (max-width: 1180px) {
+    #blogImg {
 
-/* 
-h1{
-    font-family: "Brush Script MT"
-}
+      width: 400px;
+    }
+    .overlay{
+         left:35px;
+         width: 104%;
+     }
+  }
 
-.homePage{
-    position: absolute;
-    left: 10px;
-}
+  @media screen and (max-width: 946px) {
 
-.homePage .blog_img {
-    max-width: 70%;
-    height: 300px
-}
+    .overlay{
+        
+         width:350px;
+         right: 60px;        
+     }
+  }
 
-.homePage .row{
-    width: 80%;
-    background-color: blueviolet;
-    margin: auto;
-}
+  @media screen and (max-width: 967px) {
+    #blogImg {
+
+      width: 350px;
+     
+    }
+  }
 
 
-
-.homePage span{
-    margin: 0;
-    padding-top: 20%;
-    padding-bottom: 18px;
-    padding-left: 40px;
-    padding-right: 0;
-    font-weight: bold;
-    color: #fff;
-    font-family: "Brush Script MT";
-    position: relative;
-    right: 26%;
-    } */
 
 
 

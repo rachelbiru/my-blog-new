@@ -1,73 +1,80 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { Row, Col, Container, Button } from 'react-bootstrap';
 
 
 class UserBlogs extends Component {
-    state = { blogs: [{}] , redirect : false , blog : {} }
+    state = { userBlogs:[], redirect: false, blog: {} }
 
     componentDidMount() {
-        axios.get(`/api/${localStorage.email}`)
-          
+        axios.get(`/blogs/${localStorage.email}`)
             .then(res => {
-                  console.log(res.data);
-                const blogs = res.data;
-                this.setState({ blogs });
+                if (res.status === 200) {
+                    this.setState({ userBlogs: res.data });
+                } else {
+                    console.log('error')
+                }
+
+            })
+            .catch(err => {
+                console.log(err);
             })
     }
 
 
-    
-    deleteBlog = (id,i)=>{
-        axios.delete(`/api/${id}`)
-        .then(res =>{
-            console.log(res.data);
+    deleteBlog = (id, i) => {
+        axios.delete(`/blogs/${id}`)
+            .then(res => {
+                if (res.status === 200) {
+                    window.location.reload(true);
+                } else {
 
-            let tmp = [...this.state.blogs]
-            tmp.splice(i,1)
-            this.setState({blogs : tmp})
-        }) 
-        .catch({
-            
-        })
+                }
+
+            })
+            .catch({
+
+            })
     }
-    
+
 
     render() {
-         console.log(this.state.blogs)
-        console.log(this.state.blog)
 
         if (this.state.redirect) {
             return <Redirect to='/editblog' />
         }
-        
 
-        const elements = this.state.blogs.map((item, i) => (
-            <div key={i}>
-                <img src={item.filename} alt="" />
-                <h1>{item.categories}</h1>
-                <p>{item.description}</p>
-
-                <button onClick={()=>{
-                    const id = item._id
-                    this.deleteBlog(id,i)
-                }} >Delete</button>
+        const elements = this.state.userBlogs.map((item, i) => (
+            <Col key={i} md={4}>
+                <div style={{ margin: "10%" }} >
+                    <img style={{ width: "350px", height: "400px", margin: "10%" }} src={item.filename} alt="" />
+                    <h1>{item.categories}</h1>
+                    <p>{item.description}</p>
 
 
-                <button onClick={()=>{
-                    //    const id = item._id
-                    //   this.updateBlog(id);
-                     this.props.searchBlog(item._id);
-                      this.setState({redirect:true})
-                }}>update</button>
+                    <Button style={{ margin: "10%" }} onClick={() => {
+                        const id = item._id
+                        this.deleteBlog(id, i)
+                        this.props.history(item.categories, "deleted")
+                    }} variant="success">Delete</Button>
 
 
-            </div>
+                    <Button onClick={() => {
+                        this.props.searchBlog(item._id);
+                        this.setState({ redirect: true })
+                    }} variant="success">Update</Button>
+                </div>
+            </Col>
         ))
 
         return (
             <div>
-                {elements}
+                <Container>
+                    <Row>
+                        {elements}
+                    </Row>
+                </Container>
             </div>
         )
     }

@@ -4,9 +4,10 @@ const Schema = mongoose.Schema
 
 const CommentSchema = new Schema({
  
-   
     name: {
         type: String,
+        required: true
+
     },
     email: {
         type: String,
@@ -15,6 +16,7 @@ const CommentSchema = new Schema({
 
     text: {
         type: String,
+        required: true
     },
 
 })

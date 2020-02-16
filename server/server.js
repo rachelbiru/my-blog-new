@@ -1,5 +1,4 @@
 var express = require('express');
-// const cors = require('cors')
 const bodyParser = require('body-parser');
 var app = express();
 const path = require('path');
@@ -8,7 +7,6 @@ const PORT = process.env.PORT || 5000;
 
 const multer = require('multer');
 const uploadDirectory = 'uploads'
-// const upload = multer({ dest : uploadDirectory})
 app.use(express.static(path.join(__dirname, uploadDirectory)))
 mongoose.set('useFindAndModify', false);
 
@@ -44,11 +42,16 @@ var Users = require('./routes/Users');
 app.use('/users', Users)
 
 
-var Blogs = require('./routes/Blogs');
-app.use('/blogs', Blogs);
+// var Blogs = require('./routes/Blogs');
+// app.use('/blogs', Blogs);
 
 var Comments = require('./routes/Comments');
 app.use('/comments', Comments);
+
+var Histories = require('./routes/Histories')
+app.use('/history' , Histories);
+
+
 
 
 const storage = multer.diskStorage({
@@ -62,8 +65,7 @@ const upload = multer({
     storage: storage
 });
 
-
-app.post('/api', upload.single('someFile'), (req, res) => {
+app.post('/blogs', upload.single('someFile'), (req, res) => {
     console.log('api is accessed');
 
     const obj = new Blog({
@@ -72,18 +74,15 @@ app.post('/api', upload.single('someFile'), (req, res) => {
         description: req.body.description,
         email: req.body.email,
     })
-
-    // obj.comments.push(req.body.comments);
-
     obj.save()
     res.status(201).send(obj)
 })
 
 
-app.post('/api/:id', upload.single('someFile'), (req, res) => {
+
+app.post('/blogs/:id', upload.single('someFile'), (req, res) => {
     console.log('api is accessed');
     const id = req.params.id;
-    // console.log(req.params)
 
     if (req.file) {
         var datarecord = {
@@ -91,8 +90,6 @@ app.post('/api/:id', upload.single('someFile'), (req, res) => {
             categories: req.body.categories,
             description: req.body.description,
             email: req.body.email,
-
-
         }
     } else {
         var datarecord = {
@@ -101,53 +98,14 @@ app.post('/api/:id', upload.single('someFile'), (req, res) => {
             email: req.body.email,
         }
     }
-    console.log('befor update');
-
 
     const update = Blog.findByIdAndUpdate(id, datarecord)
-    console.log('after update');
-
 
     update.exec(function (err, data) {
         if (err) throw err;
     })
     res.status(201).redirect('/');
 })
-
-
-
-// app.post('/api/:id', upload.single('someFile'), (req, res) => {
-//     console.log(req.params.id);    
-//     const id = req.params.id;
-//     console.log('push')
-
-//     Blog.findByIdAndUpdate(JSON.parse({ _id: id }, { $push: { "products": { name: req.body.dataProduct.name } } }), { safe: true }, function (err, response) {
-//         console.log('push!!!')
-
-//         if (err) throw err;
-
-//         console.log('finish')
-
-//          res.json.parse({response});
-//     });
-// });
-
-
-// app.post('/api/add', function (req, res) {
-//     var object = {
-//       "name": "John",
-//       "age": "21"
-//     };
-
-//     Blog.create(object, function(err, result) {
-//       if (err) {
-//         res.send(err);
-//       } else {
-//         console.log(result);
-//         res.send(result);
-//       }
-//     });
-//   });
 
 
 
@@ -164,8 +122,7 @@ app.get('/images/:newFileName', (req, res) => {
 })
 
 
-
-app.get("/api", (req, res, next) => {
+app.get("/blogs", (req, res, next) => {
 
     Blog.find().populate("comments")
         .exec()
@@ -179,7 +136,8 @@ app.get("/api", (req, res, next) => {
         })
 })
 
-app.get("/api/comments/:id", (req, res, next) => {
+
+app.get("/blogs/comments/:id", (req, res, next) => {
 
     const tokenid = req.params.id;
     console.log(tokenid);
@@ -201,21 +159,15 @@ app.get("/api/comments/:id", (req, res, next) => {
 
 
 
-
-
-app.get("/api/:email", (req, res, next) => {
+app.get("/blogs/:email", (req, res, next) => {
     console.log(req.params, "rachel biru ");
 
     const token = req.params.email;
-    // const tokenid = req.params._id;
-
-    console.log(token);
     Blog.find({ email: token })
-
         .exec()
         .then(doc => {
             console.log(doc);
-            res.status(201).json(doc)
+            res.status(200).json(doc)
         })
         .catch(err => {
             console.log(err)
@@ -223,10 +175,10 @@ app.get("/api/:email", (req, res, next) => {
         })
 })
 
-app.get("/api/findById/:id", (req, res, next) => {
+
+app.get("/blogs/findById/:id", (req, res, next) => {
     console.log(req.params, "id");
 
-    // const token = req.params.email;
     const tokenid = req.params.id;
 
     console.log(tokenid);
@@ -245,7 +197,7 @@ app.get("/api/findById/:id", (req, res, next) => {
 
 
 
-app.delete("/api/:id", (req, res) => {
+app.delete("/blogs/:id", (req, res) => {
     console.log(req.params, "deletedddddddddddd")
     const id = req.params.id;
 
@@ -264,40 +216,6 @@ app.delete("/api/:id", (req, res) => {
 })
 
 
-// app.post('/api/:id', upload.single('someFile'), (req, res) => {
-
-//     console.log(req.params.id , "!!??");
-
-//     Blog.push(req.body)
-//     Blog.save()
-//     res.status(201).send(Blog)
-// })
-
-
-
-// app.patch("/api/:id", (req, res) => {
-//     const id = req.params.id;
-//     console.log(req.params)
-
-//     Blog.findByIdAndUpdate(
-//         { _id: id },
-//         {
-//             $push: { comments: req.body}
-//         })
-//         .exec()
-//         .then(result => {
-//             console.log(req.body)
-//             console.log(result, "updata succes");
-//             res.status(200).json(result)
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json({
-//                 error: err
-//             })
-
-//         })
-// })
 
 app.listen(PORT, () => {
     console.log(`app running on port ${PORT}`)

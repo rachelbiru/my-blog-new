@@ -44,7 +44,7 @@ class Navbar extends Component {
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item active">
                             <Link to="/profile" className="nav-link" >
-                                User
+                                Add-Blog
                             </Link>
                         </li>
 
@@ -54,14 +54,22 @@ class Navbar extends Component {
                             </Link>
                         </li>
 
+                        
+                        <li className="nav-item active">
+                            <Link to="/history" className="nav-link" >
+                                History
+                            </Link>
+                        </li>
+
                         <li className="nav-item">
-                            <a harf="" onClick={this.logOut.bind(this)} className="nav-link">
+                            <Link to="" onClick={this.logOut.bind(this)} className="nav-link">
+                            
                                 Logout
-                           </a>
+                           </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link " href="#" tabIndex="-1" aria-disabled="true">
-                            </a>
+                            <Link className="nav-link " to="#" tabIndex="-1" aria-disabled="true">
+                            </Link>
                         </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
